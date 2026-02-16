@@ -263,7 +263,7 @@
   students.forEach(stu => {
     const name = stu.name || "";
     const score = Number(stu.score) || 0;
-    const imgUrl = stu.image || "1.png";
+    const imgUrl = stu.image || "assets/1.png";
     const psLogo = (score >= 250 && stu.logo) ? stu.logo : "";
     htmlTag += `
       <div class="student-card">
