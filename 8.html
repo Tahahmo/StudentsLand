@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> بورس دانش‌آموزی پایه هشتم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/vazirmatn-font@latest/dist/font-face.css" rel="stylesheet" />
+
+  <style>
+     @font-face {
+      font-family: iran;
+      src: url(Iranian\ Sans.ttf);
+    }
+    body {
+      font-family:'iran' , sans-serif;
+      background-image:url('background.png');
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Vazirmatn';
+      margin: 1rem 0;
+      color: #fff;
+    }
+    .swiper {
+      width: 100%;
+      height: 100vh;
+    }
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .section {
+      border: solid 5px rgb(208, 0, 255) ;
+      width: 100%;
+      max-width: 1550px;
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section-main{
+      width: 100%;
+      max-width: 1550px;
+      padding: 2rem;
+      border-radius: 2rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid gray;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: center;
+    }
+    th {
+      background-color: #222;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .green {
+      color: green;
+      font-weight: bold;
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+
+    .cards-kj{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-auto-rows: 335px;
+      gap: 0.5rem;
+    }
+
+    .cards-ka {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-auto-rows: 310px;
+      gap: 0.5rem;
+    }
+
+    .cards-kz {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-auto-rows: 295px;
+      gap: 0.5rem;
+    }
+
+    .student-card {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .student-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .student-card img {
+      padding-top: 0.5rem;
+      width: 100%;
+      aspect-ratio: 3 / 4;  
+      /*aspect-ratio: 1 / 2;*/ 
+      border-radius: 1rem;
+      object-fit: contain;
+      object-position: top;  
+    }
+
+    .student-info {
+      padding: 0.75rem;
+    }
+
+    .student-name {
+      /*font-weight: bold;*/
+      margin-bottom: 0.5rem;
+    }
+
+    .change.green { color: green; font-weight: bold; }
+    .change.red { color: red; font-weight: bold; }
+
+    .justif {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .fasele-amoodi-zoj{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .fasele-amoodi-fard{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90px;
+    }
+
+    .flag-wave{
+    position: absolute;
+    left: 100px;
+      
+    }
+
+  </style>
+</head>
+<body>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="section-main">
+          <h2>🧑‍🎓 سرزمین دانش‌آموزی دبیرستان دوره اول نگرش 🧑‍🎓</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>نماد</th>
+                <th>نام کلاس</th>
+                <th>امتیاز</th>
+              </tr>
+            </thead>
+            <tbody id="classTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Slide 2: دانش‌آموزان -->
+      <div class="swiper-slide">
+        <div class="section">
+          <h2>🏅 بورس دانش‌آموزی کلاس خیام 🏅</h2>
+          <div class="cards-ka"  id="khayam"></div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="section">
+          <h2>🏅 بورس دانش‌آموزی کلاس خواجه نصیر 🏅</h2>
+          <div  class="cards-kj" id="khajenasir"></div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="section">
+          <h2>🏅 بورس دانش‌آموزی کلاس خوارزمی 🏅</h2>
+          <div class="cards-kz" id="kharazmi"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const sheetUrl = 'https://opensheet.elk.sh/1NyUVeKygbbNsGEtDKmxkmbNLKsKcZHfStsobUZaRW7A/sheet1';
+
+    async function fetchData() {
+      try {
+        const res = await fetch(sheetUrl);
+        const data = await res.json();
+
+        const classes = data.filter(row => row.type === "class");
+        const khayamStudents = data.filter(row => row.type === "khayam");
+        const kharazmiStudents = data.filter(row => row.type === "kharazmi");
+        const khajenasirStudents = data.filter(row => row.type === "khajenasir");
+
+        renderClasses(classes);
+        khayam(khayamStudents);
+        khajenasir(khajenasirStudents);
+        kharazmi(kharazmiStudents);
+      } catch (error) {
+        console.error("خطا در دریافت داده‌ها:", error);
+      }
+    }
+
+    const persianNumber = (num) => {
+      return num.toLocaleString("fa-IR");
+    }
+
+    function renderClasses(classes) {
+      const table = document.getElementById("classTableBody");
+      table.innerHTML = "";
+      classes.forEach(cls => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${cls.id}</td>
+          <td>${cls.name}</td>
+          <td>${persianNumber(Number(cls.score))}</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+
+    function khayam(students) {
+      const container = document.getElementById("khayam");
+      container.innerHTML = "";
+
+      students.forEach(stu => {
+        let imgUrl = stu.image || 'default.jpg';
+        const card = document.createElement("div");
+        card.className = "student-card";
+        let psLogo = stu.logo
+        if (stu.score >= 250){
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                    <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+                <img width="15px" height="15px" src="${psLogo}"/>
+            </div>
+              `;
+        }else{
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                  <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+            </div>
+              `;
+        }
+        container.appendChild(card);
+      });
+    }
+
+    function kharazmi(students) {
+      const container = document.getElementById("kharazmi");
+      container.innerHTML = "";
+
+      students.forEach(stu => {
+        let imgUrl = stu.image || 'default.jpg';
+        const card = document.createElement("div");
+        card.className = "student-card";
+        let psLogo = stu.logo
+        if (stu.score >= 250){
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                    <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+                <img width="15px" height="15px" src="${psLogo}"/>
+            </div>
+              `;
+        }else{
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                  <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+            </div>
+              `;
+        }
+        container.appendChild(card);
+      });
+    }
+
+    function khajenasir(students) {
+      const container = document.getElementById("khajenasir");
+      container.innerHTML = "";
+
+      students.forEach(stu => {
+        let imgUrl = stu.image || 'default.jpg';
+        const card = document.createElement("div");
+        card.className = "student-card";
+        let psLogo = stu.logo
+        if (stu.score >= 250){
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                    <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+                <img width="15px" height="15px" src="${psLogo}"/>
+            </div>
+              `;
+        }else{
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${stu.name}" />
+            <div class="student-info">
+              <div class="fasele-amoodi-zoj">
+                <div class="student-name">${stu.name}</div>
+                <div class="justif">
+                  <div>امتیاز:</div>
+                  <div class="green">${persianNumber(Number(stu.score))}</div>
+                </div>
+              </div>
+            </div>
+              `;
+        }
+        container.appendChild(card);
+      });
+    }
+
+    const swiper = new Swiper('.swiper', {
+      lazy:true,
+      preloadImages:false,
+      rtl:true,
+      loop: true,
+      speed:800 ,
+      autoplay: {
+        delay: 5000,
+      },
+      effect: 'flip',
+      flipEffect:{
+      slideShadows:true,
+      limitRotation:true
+      }
+    });
+
+    fetchData();
+    setInterval(fetchData, 10000); // هر ۳۰ ثانیه یک بار رفرش شود
+    
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
